@@ -35,11 +35,11 @@ A arquitetura da nossa solução será baseada em uma abordagem modular e escal�
 
 ## Definição das Tecnologias
 
-**Sensor:** ESP32
-**Linguagens de Programação:** Python, R, SQL, C/C++
-**Bibliotecas de IA:** TensorFlow, Keras, Pandas
-**Serviços de Nuvem:** AWS
-**Banco de Dados:** AWS S3, PostgreSQL
+- **Sensor:** ESP32
+- **Linguagens de Programação:** Python, R, SQL, C/C++
+- **Bibliotecas de IA:** TensorFlow, Keras, Pandas
+- **Serviços de Nuvem:** AWS
+- **Banco de Dados:** AWS S3, PostgreSQL
 
 ## Coleta de Dados
 
