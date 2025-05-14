@@ -16,9 +16,9 @@
 
 ## Professores:
 ### Tutor(a) 
-- Nome do Tutor
+- Leonardo Ruiz Orabona
 ### Coordenador(a)
-- Nome do Coordenador
+- André Godoi
 
 
 ## Objetivos
