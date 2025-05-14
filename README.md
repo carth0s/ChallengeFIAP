@@ -124,7 +124,7 @@ A arquitetura da nossa solução será baseada em uma abordagem modular e escal�
 
 **Armazenamento + tratamento e pré-processamento dos dados:** Carlos, Mauricio.
 
-**Treinamento e integração do modelo de IA:** Carlos, Leonardo, Rodrigo.
+**Treinamento e integração do modelo de IA:** Carlos, Leandro, Rodrigo.
 
 **Criação do dashboard:**  Rodrigo, Mauricio.
 
