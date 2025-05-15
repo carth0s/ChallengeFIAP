@@ -119,7 +119,7 @@ A arquitetura da nossa solução será baseada em uma abordagem modular e escal�
 
 ## Esboço da Arquitetura da Solução
 
-<img src="assets/diagrama.png" alt="Diagrama - Esboço da Arquitetura da Solução" border="0" width=60% height=60%>
+<img src="assets/diagrama.png" alt="Diagrama - Esboço da Arquitetura da Solução" border="0" width=80% height=80%>
 
 ## Divisão de Tarefas 
 
