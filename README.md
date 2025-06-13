@@ -10,7 +10,6 @@
 
 ## Integrantes: 
 - Carlos Daniel Silveira Do Nascimento - RM88439
-- Leandro dos Santos Ribeiro - RM562633
 - Mauricio Jose Ferlin Tonnera - RM565469
 - Rodrigo Portugal Santos - RM564773
 
@@ -117,17 +116,90 @@ A arquitetura da nossa solução será baseada em uma abordagem modular e escal�
   - Análise de tendências de falhas ao longo do tempo  
   - Relatórios sumarizados para a gerência com insights e recomendações
 
+## Implementação Prática - Fase 2
+
+### Simulação no Wokwi
+
+Para validar a proposta da arquitetura em um ambiente simulado, foi utilizado o Wokwi, uma plataforma de simulação de microcontroladores. O circuito simulado incluiu:
+
+- **ESP32 DevKit V1**
+- **Sensor DHT22** para leitura de temperatura e umidade
+- Simulação adicional via código de:
+  - Vibração (g)
+  - Corrente elétrica (A)
+  - Tensão (V)
+  - Potência (W)
+  - Pressão atmosférica (hPa)
+
+A leitura dos dados foi feita via porta serial, com os seguintes exemplos de saída:
+
+```
+T:25.4°C, U:56%, V:1.8g, I:3.5A, Vlt:220.40V, P:771.4W, Pr:1002hPa
+```
+
+> **Link para a simulação no Wokwi**: [clique aqui](https://wokwi.com/projects/433598201475154945)
+
+### Justificativa dos Sensores Utilizados
+
+A escolha dos sensores e variáveis simuladas no código foi baseada na relevância para monitoramento preditivo em ambientes industriais:
+
+- **Temperatura e Umidade (DHT22):** essenciais para controle ambiental de processos industriais e prevenção de superaquecimento. O DHT22 é preciso, barato e fácil de integrar com o ESP32.
+
+- **Vibração (simulada):** representa um dos principais sinais de falha mecânica em motores e rolamentos. Sua análise permite detectar anomalias precoces e evitar quebras.
+
+- **Corrente (A) e Tensão (V):** utilizadas para calcular a potência elétrica consumida. Essas variáveis permitem monitorar sobrecargas, eficiência energética e desgaste de componentes.
+
+- **Potência (W):** derivada direta de corrente e tensão. Ajuda a identificar comportamentos fora do padrão e prever falhas elétricas.
+
+- **Pressão Atmosférica (simulada):** relevante para processos pneumáticos e ambientes pressurizados. Variações anormais podem indicar vazamentos ou falhas em vedação.
+
+Essas variáveis simuladas refletem indicadores-chave em ambientes industriais e permitem demonstrar, mesmo em simulação, a viabilidade de um sistema de monitoramento inteligente.
+
+<img src="assets/circuito1.png" alt="Exemplo do circuito em funcionamento" border="0" width=60% height=60%>
+<img src="assets/circuito2.png" alt="Exemplo do circuito em funcionamento" border="0" width=60% height=60%>
+
+### Exportação e Análise de Dados
+
+Os dados gerados pela simulação foram copiados da serial e salvos em um arquivo `dados_simulados.csv`. Em seguida, foi criado um script em Python para geração automática de gráficos com base nesse arquivo.
+
+### Gráficos Gerados
+
+Três gráficos principais foram produzidos com a biblioteca `matplotlib`:
+
+1. **Temperatura vs Umidade**
+   - Representa a correlação entre as duas variáveis ambientais.
+<img src="assets/grafico1.png" alt="Temperatura vs Umidade" border="0" width=60% height=60%>
+
+2. **Corrente e Potência ao longo das amostras**
+   - Útil para observar picos de consumo e variações de carga.
+<img src="assets/grafico2.png" alt="Corrente e Potência ao longo das amostras" border="0" width=60% height=60%>
+
+3. **Variação da Pressão Atmosférica**
+   - Pode indicar mudanças ambientais ou falhas em sistemas pneumáticos.
+<img src="assets/grafico3.png" alt="Variação da Pressão Atmosférica" border="0" width=60% height=60%>
+
+Os gráficos são salvos automaticamente em formato PNG após a execução do script. Exemplo de execução:
+
+```bash
+python gerar_graficos.py
+```
+
+> Os arquivos são gerados como:
+> - `grafico_temperatura_umidade.png`
+> - `grafico_potencia_corrente.png`
+> - `grafico_pressao.png`
+
 ## Esboço da Arquitetura da Solução
 
 <img src="assets/diagrama2.jpg" alt="Diagrama - Esboço da Arquitetura da Solução" border="0" width=80% height=80%>
 
 ## Divisão de Tarefas 
 
-**Simulação  e recebimento dos dados:** Carlos, Leandro.
+**Simulação  e recebimento dos dados:** Carlos, Mauricio.
 
-**Armazenamento + tratamento e pré-processamento dos dados:** Carlos, Mauricio.
+**Armazenamento + tratamento e pré-processamento dos dados:** Rodrigo, Mauricio.
 
-**Treinamento e integração do modelo de IA:** Carlos, Leandro, Rodrigo.
+**Treinamento e integração do modelo de IA:** Carlos, Rodrigo.
 
 **Criação do dashboard:**  Rodrigo, Mauricio.
 
