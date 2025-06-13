@@ -115,32 +115,29 @@ A arquitetura da nossa solução será baseada em uma abordagem modular e escal�
   - Recomendações de ações preventivas (manutenção preditiva)  
   - Análise de tendências de falhas ao longo do tempo  
   - Relatórios sumarizados para a gerência com insights e recomendações
+ 
+  - ## Esboço da Arquitetura da Solução
 
-## Implementação Prática - Fase 2
+<img src="assets/diagrama2.jpg" alt="Diagrama - Esboço da Arquitetura da Solução" border="0" width=80% height=80%>
 
-### Estrutura de Arquivos do Projeto
+## Divisão de Tarefas 
 
-O projeto está organizado de forma a separar claramente os recursos gráficos, os códigos de simulação e os dados coletados:
+**Simulação  e recebimento dos dados:** Carlos, Mauricio.
 
-```
-assets/
-├── circuito1.png              # Imagem do circuito montado no Wokwi (visão 1)
-├── circuito2.png              # Imagem do circuito montado no Wokwi (visão 2)
-├── diagrama2.jpg              # Arquitetura da solução proposta
-├── grafico1.png               # Gráfico: Temperatura vs Umidade
-├── grafico2.png               # Gráfico: Corrente e Potência
-├── grafico3.png               # Gráfico: Variação da Pressão Atmosférica
-└── logo-fiap.png              # Logotipo da FIAP utilizado no topo do README
+**Armazenamento + tratamento e pré-processamento dos dados:** Rodrigo, Mauricio.
 
-src/
-├── main.ino                   # Código para ESP32 simulando os sensores e enviando dados pela serial
-├── graficos.py                # Script em Python que gera gráficos com base no CSV
-└── dados_simulados.csv        # Arquivo com os dados exportados da simulação via Serial Monitor
+**Treinamento e integração do modelo de IA:** Carlos, Rodrigo.
 
-README.md                       # Documentação explicativa do projeto
-```
+**Criação do dashboard:**  Rodrigo, Mauricio.
 
-> Os arquivos da pasta `src/` representam a implementação prática da solução, enquanto a pasta `assets/` contém os recursos visuais utilizados para documentação e apresentação.
+**README & Apresentação final:** Todos.
+
+## Licença
+
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">Fiap</a> está licenciado sobre <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
+
+
+## Implementação Prática - Fase 4 - SPRINT2
 
 ### Simulação no Wokwi
 
@@ -213,23 +210,3 @@ python gerar_graficos.py
 > - `grafico_temperatura_umidade.png`
 > - `grafico_potencia_corrente.png`
 > - `grafico_pressao.png`
-
-## Esboço da Arquitetura da Solução
-
-<img src="assets/diagrama2.jpg" alt="Diagrama - Esboço da Arquitetura da Solução" border="0" width=80% height=80%>
-
-## Divisão de Tarefas 
-
-**Simulação  e recebimento dos dados:** Carlos, Mauricio.
-
-**Armazenamento + tratamento e pré-processamento dos dados:** Rodrigo, Mauricio.
-
-**Treinamento e integração do modelo de IA:** Carlos, Rodrigo.
-
-**Criação do dashboard:**  Rodrigo, Mauricio.
-
-**README & Apresentação final:** Todos.
-
-## Licença
-
-<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">Fiap</a> está licenciado sobre <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
