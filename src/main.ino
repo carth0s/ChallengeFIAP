@@ -1,4 +1,4 @@
-#include "DHTesp.h"  // Biblioteca **DHTesp**, otimizada para ESP32/ESP8266 ao lidar com sensores DHT‑11/22 :contentReference[oaicite:1]{index=1}
+#include "DHTesp.h"  // Biblioteca **DHTesp**, otimizada para ESP32/ESP8266 ao lidar com sensores DHT‑11/22
 
 #define DHT_PIN 15        // Define o pino **GPIO 15** como conexão do sensor DHT22
 DHTesp dht;               // Instância `dht` para gerenciar a comunicação e leitura
@@ -7,8 +7,7 @@ void setup() {
   Serial.begin(115200);   // Inicializa a porta serial a 115200 bps
   delay(1000);            // Pequena pausa para garantir a estabilidade da conexão
   dht.setup(DHT_PIN, DHTesp::DHT22);  
-  // Configura o sensor DHT22 no pino indicado (DHTesp lida automaticamente com os timings) :contentReference[oaicite:2]{index=2}
-
+  // Configura o sensor DHT22 no pino indicado (DHTesp lida automaticamente com os timings) 
   Serial.println("Iniciando simulação DHT22 no GPIO15...");
 }
 
