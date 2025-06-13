@@ -138,6 +138,30 @@ A arquitetura da nossa solução será baseada em uma abordagem modular e escal�
 
 ## Implementação Prática - Fase 4 - SPRINT2
 
+### Estrutura de Arquivos do Projeto
+
+O projeto está organizado de forma a separar claramente os recursos gráficos, os códigos de simulação e os dados coletados:
+
+```
+assets/
+├── circuito1.png              # Imagem do circuito montado no Wokwi (visão 1)
+├── circuito2.png              # Imagem do circuito montado no Wokwi (visão 2)
+├── diagrama2.jpg              # Arquitetura da solução proposta
+├── grafico1.png               # Gráfico: Temperatura vs Umidade
+├── grafico2.png               # Gráfico: Corrente e Potência
+├── grafico3.png               # Gráfico: Variação da Pressão Atmosférica
+└── logo-fiap.png              # Logotipo da FIAP utilizado no topo do README
+
+src/
+├── main.ino                   # Código para ESP32 simulando os sensores e enviando dados pela serial
+├── graficos.py                # Script em Python que gera gráficos com base no CSV
+└── dados_simulados.csv        # Arquivo com os dados exportados da simulação via Serial Monitor
+
+README.md                      # Documentação explicativa do projeto
+```
+
+> Os arquivos da pasta `src/` representam a implementação prática da solução, enquanto a pasta `assets/` contém os recursos visuais utilizados para documentação e apresentação.
+
 ### Simulação no Wokwi
 
 Para validar a proposta da arquitetura em um ambiente simulado, foi utilizado o Wokwi, uma plataforma de simulação de microcontroladores. O circuito simulado incluiu:
@@ -174,52 +198,6 @@ A escolha dos sensores e variáveis simuladas no código foi baseada na relevân
 - **Pressão Atmosférica (simulada):** relevante para processos pneumáticos e ambientes pressurizados. Variações anormais podem indicar vazamentos ou falhas em vedação.
 
 Essas variáveis simuladas refletem indicadores-chave em ambientes industriais e permitem demonstrar, mesmo em simulação, a viabilidade de um sistema de monitoramento inteligente.
-
-### 🔧 Código comentado (sketch.ino)
-
-```cpp
-#include "DHTesp.h"  // Biblioteca **DHTesp**, otimizada para ESP32/ESP8266 ao lidar com sensores DHT‑11/22 :contentReference[oaicite:1]{index=1}
-
-#define DHT_PIN 15        // Define o pino **GPIO 15** como conexão do sensor DHT22
-DHTesp dht;               // Instância `dht` para gerenciar a comunicação e leitura
-
-void setup() {
-  Serial.begin(115200);   // Inicializa a porta serial a 115200 bps
-  delay(1000);            // Pequena pausa para garantir a estabilidade da conexão
-  dht.setup(DHT_PIN, DHTesp::DHT22);  
-  // Configura o sensor DHT22 no pino indicado (DHTesp lida automaticamente com os timings) :contentReference[oaicite:2]{index=2}
-
-  Serial.println("Iniciando simulação DHT22 no GPIO15...");
-}
-
-void loop() {
-  TempAndHumidity th = dht.getTempAndHumidity();  
-  // Lê temperatura e umidade em uma única chamada
-
-  float temp = isnan(th.temperature)
-               ? random(200, 350) / 10.0  // Se falhar (NaN), gera valor aleatório entre 20.0–35.0 °C
-               : th.temperature;
-
-  int umid = isnan(th.humidity)
-             ? random(30, 70)           // Se falhar, gera umidade aleatória de 30–69 %
-             : int(th.humidity);
-
-  // Simula outros sensores para criar um cenário IoT completo:
-  float vibracao = random(0, 51) / 10.0;         // 0.0 – 5.0 g
-  float corrente = random(0, 101) / 10.0;        // 0.0 – 10.0 A
-  float tensao   = random(2100, 2310) / 100.0;   // 21.00 – 23.10 V
-  float potencia = corrente * tensao;            // Potência (W)
-  int   pressao  = random(950, 1051);           // 950 – 1050 hPa
-
-  // Envia todos os dados formatados no Serial Monitor:
-  Serial.printf(
-    "T:%.1f°C, U:%d%%, V:%.1fg, I:%.1fA, Vlt:%.2fV, P:%.1fW, Pr:%dhPa\n",
-    temp, umid, vibracao, corrente, tensao, potencia, pressao
-  );
-
-  delay(3000);  // Espera 3 segundos até a próxima leitura
-}
-```
 
 ### Exemplos do circuito em funcionamento e saída do serial
 <img src="assets/circuito1.png" alt="Exemplo do circuito em funcionamento" border="0" width=60% height=60%>
