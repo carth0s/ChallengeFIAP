@@ -119,7 +119,7 @@ A arquitetura da nossa solução será baseada em uma abordagem modular e escal�
   - Análise de tendências de falhas ao longo do tempo  
   - Relatórios sumarizados para a gerência com insights e recomendações
  
-  - ## Esboço da Arquitetura da Solução
+## Esboço da Arquitetura da Solução
 
 <img src="assets/diagrama2.jpg" alt="Diagrama - Esboço da Arquitetura da Solução" border="0" width=80% height=80%>
 
