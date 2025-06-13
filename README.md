@@ -155,6 +155,7 @@ A escolha dos sensores e variáveis simuladas no código foi baseada na relevân
 
 Essas variáveis simuladas refletem indicadores-chave em ambientes industriais e permitem demonstrar, mesmo em simulação, a viabilidade de um sistema de monitoramento inteligente.
 
+### Exemplos do circuito em funcionamento e saída do serial
 <img src="assets/circuito1.png" alt="Exemplo do circuito em funcionamento" border="0" width=60% height=60%>
 <img src="assets/circuito2.png" alt="Exemplo do circuito em funcionamento" border="0" width=60% height=60%>
 
