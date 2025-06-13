@@ -225,14 +225,13 @@ Três gráficos principais foram produzidos com a biblioteca `matplotlib`:
 <img src="assets/grafico3.png" alt="Variação da Pressão Atmosférica" border="0" width=60% height=60%>
 
 Os gráficos são salvos automaticamente em formato PNG após a execução do script. Exemplo de execução:
-
+```
 python gerar_graficos.py
 ```
 > Os arquivos são gerados como:
 > - `grafico_temperatura_umidade.png`
 > - `grafico_potencia_corrente.png`
 > - `grafico_pressao.png`
-```
 
 ## Licença
 
