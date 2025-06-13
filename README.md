@@ -1,5 +1,8 @@
 # FIAP - Faculdade de Informática e Administração Paulista 
 
+
+## Implementação Prática - Fase 3 - SPRINT1
+
 <p align="center">
 <a href= "https://www.fiap.com.br/"><img src="assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Admnistração Paulista" border="0" width=40% height=40%></a>
 </p>
@@ -120,6 +123,7 @@ A arquitetura da nossa solução será baseada em uma abordagem modular e escal�
 
 <img src="assets/diagrama2.jpg" alt="Diagrama - Esboço da Arquitetura da Solução" border="0" width=80% height=80%>
 
+
 ## Divisão de Tarefas 
 
 **Simulação  e recebimento dos dados:** Carlos, Mauricio.
@@ -131,11 +135,6 @@ A arquitetura da nossa solução será baseada em uma abordagem modular e escal�
 **Criação do dashboard:**  Rodrigo, Mauricio.
 
 **README & Apresentação final:** Todos.
-
-## Licença
-
-<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">Fiap</a> está licenciado sobre <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
-
 
 ## Implementação Prática - Fase 4 - SPRINT2
 
@@ -176,9 +175,56 @@ A escolha dos sensores e variáveis simuladas no código foi baseada na relevân
 
 Essas variáveis simuladas refletem indicadores-chave em ambientes industriais e permitem demonstrar, mesmo em simulação, a viabilidade de um sistema de monitoramento inteligente.
 
+### 🔧 Código comentado (sketch.ino)
+
+```cpp
+#include "DHTesp.h"  // Biblioteca **DHTesp**, otimizada para ESP32/ESP8266 ao lidar com sensores DHT‑11/22 :contentReference[oaicite:1]{index=1}
+
+#define DHT_PIN 15        // Define o pino **GPIO 15** como conexão do sensor DHT22
+DHTesp dht;               // Instância `dht` para gerenciar a comunicação e leitura
+
+void setup() {
+  Serial.begin(115200);   // Inicializa a porta serial a 115200 bps
+  delay(1000);            // Pequena pausa para garantir a estabilidade da conexão
+  dht.setup(DHT_PIN, DHTesp::DHT22);  
+  // Configura o sensor DHT22 no pino indicado (DHTesp lida automaticamente com os timings) :contentReference[oaicite:2]{index=2}
+
+  Serial.println("Iniciando simulação DHT22 no GPIO15...");
+}
+
+void loop() {
+  TempAndHumidity th = dht.getTempAndHumidity();  
+  // Lê temperatura e umidade em uma única chamada
+
+  float temp = isnan(th.temperature)
+               ? random(200, 350) / 10.0  // Se falhar (NaN), gera valor aleatório entre 20.0–35.0 °C
+               : th.temperature;
+
+  int umid = isnan(th.humidity)
+             ? random(30, 70)           // Se falhar, gera umidade aleatória de 30–69 %
+             : int(th.humidity);
+
+  // Simula outros sensores para criar um cenário IoT completo:
+  float vibracao = random(0, 51) / 10.0;         // 0.0 – 5.0 g
+  float corrente = random(0, 101) / 10.0;        // 0.0 – 10.0 A
+  float tensao   = random(2100, 2310) / 100.0;   // 21.00 – 23.10 V
+  float potencia = corrente * tensao;            // Potência (W)
+  int   pressao  = random(950, 1051);           // 950 – 1050 hPa
+
+  // Envia todos os dados formatados no Serial Monitor:
+  Serial.printf(
+    "T:%.1f°C, U:%d%%, V:%.1fg, I:%.1fA, Vlt:%.2fV, P:%.1fW, Pr:%dhPa\n",
+    temp, umid, vibracao, corrente, tensao, potencia, pressao
+  );
+
+  delay(3000);  // Espera 3 segundos até a próxima leitura
+}
+```
+
 ### Exemplos do circuito em funcionamento e saída do serial
 <img src="assets/circuito1.png" alt="Exemplo do circuito em funcionamento" border="0" width=60% height=60%>
 <img src="assets/circuito2.png" alt="Exemplo do circuito em funcionamento" border="0" width=60% height=60%>
+
 
 ### Exportação e Análise de Dados
 
@@ -202,11 +248,14 @@ Três gráficos principais foram produzidos com a biblioteca `matplotlib`:
 
 Os gráficos são salvos automaticamente em formato PNG após a execução do script. Exemplo de execução:
 
-```bash
 python gerar_graficos.py
 ```
-
 > Os arquivos são gerados como:
 > - `grafico_temperatura_umidade.png`
 > - `grafico_potencia_corrente.png`
 > - `grafico_pressao.png`
+```
+
+## Licença
+
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">Fiap</a> está licenciado sobre <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
