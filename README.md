@@ -118,6 +118,30 @@ A arquitetura da nossa solução será baseada em uma abordagem modular e escal�
 
 ## Implementação Prática - Fase 2
 
+### Estrutura de Arquivos do Projeto
+
+O projeto está organizado de forma a separar claramente os recursos gráficos, os códigos de simulação e os dados coletados:
+
+```
+assets/
+├── circuito1.png              # Imagem do circuito montado no Wokwi (visão 1)
+├── circuito2.png              # Imagem do circuito montado no Wokwi (visão 2)
+├── diagrama2.jpg              # Arquitetura da solução proposta
+├── grafico1.png               # Gráfico: Temperatura vs Umidade
+├── grafico2.png               # Gráfico: Corrente e Potência
+├── grafico3.png               # Gráfico: Variação da Pressão Atmosférica
+└── logo-fiap.png              # Logotipo da FIAP utilizado no topo do README
+
+src/
+├── main.ino                   # Código para ESP32 simulando os sensores e enviando dados pela serial
+├── graficos.py                # Script em Python que gera gráficos com base no CSV
+└── dados_simulados.csv        # Arquivo com os dados exportados da simulação via Serial Monitor
+
+README.md                       # Documentação explicativa do projeto
+```
+
+> Os arquivos da pasta `src/` representam a implementação prática da solução, enquanto a pasta `assets/` contém os recursos visuais utilizados para documentação e apresentação.
+
 ### Simulação no Wokwi
 
 Para validar a proposta da arquitetura em um ambiente simulado, foi utilizado o Wokwi, uma plataforma de simulação de microcontroladores. O circuito simulado incluiu:
